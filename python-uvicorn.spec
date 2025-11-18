@@ -3,7 +3,7 @@
 %bcond_with test
 
 Name:		python-uvicorn
-Version:	0.34.0
+Version:	0.38.0
 Release:	1
 Summary:	An ASGI web server, for Python
 URL:		https://www.uvicorn.org/
