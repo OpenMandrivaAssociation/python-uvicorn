@@ -3,7 +3,7 @@
 %bcond_with test
 
 Name:		python-uvicorn
-Version:	0.38.0
+Version:	0.40.0
 Release:	1
 Summary:	An ASGI web server, for Python
 URL:		https://www.uvicorn.org/
@@ -13,8 +13,6 @@ Source0:	https://files.pythonhosted.org/packages/source/u/uvicorn/%{module}-%{ve
 BuildSystem:	python
 BuildArch:	noarch
 
-BuildRequires:	python
-BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(a2wsgi)
 BuildRequires:	python%{pyver}dist(build)
 BuildRequires:	python%{pyver}dist(click)
@@ -62,21 +60,11 @@ across all async frameworks.
 
 Uvicorn supports HTTP/1.1 and WebSockets.
 
-%prep
-%autosetup -p1 -n %{module}-%{version}
-
-%build
-%py_build
-
-%install
-%py3_install
-
 %if %{with test}
 %check
 # run tests, disable websocket tests and ignore warnings as those tests need updated.
 # for more info: https://github.com/encode/uvicorn/issues/1908
-%{__python} -m pytest --import-mode append -v tests/ -k 'not websocket' --pythonwarnings 'ignore:websockets:DeprecationWarning'
-
+python -m pytest --import-mode append -v tests/ -k 'not websocket' --pythonwarnings 'ignore:websockets:DeprecationWarning'
 %endif
 
 %files
