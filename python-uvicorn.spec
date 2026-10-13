@@ -3,7 +3,7 @@
 %bcond_with test
 
 Name:		python-uvicorn
-Version:	0.52.0
+Version:	0.54.0
 Release:	1
 Summary:	An ASGI web server, for Python
 URL:		https://www.uvicorn.org/
@@ -13,6 +13,7 @@ Source0:	https://files.pythonhosted.org/packages/source/u/uvicorn/%{module}-%{ve
 BuildSystem:	python
 BuildArch:	noarch
 
+BuildRequires:	pkgconfig(python3)
 BuildRequires:	python%{pyver}dist(a2wsgi)
 BuildRequires:	python%{pyver}dist(build)
 BuildRequires:	python%{pyver}dist(click)
@@ -21,17 +22,15 @@ BuildRequires:	python%{pyver}dist(hatchling)
 BuildRequires:	python%{pyver}dist(h11)
 BuildRequires:	python%{pyver}dist(httpx)
 BuildRequires:	python%{pyver}dist(trustme)
-BuildRequires:	python%{pyver}dist(twine)
 BuildRequires:	python%{pyver}dist(typing-extensions)
 BuildRequires:	python%{pyver}dist(wsproto)
 BuildRequires:	python%{pyver}dist(websockets)
 # Optionals
 BuildRequires:	python%{pyver}dist(colorama)
-BuildRequires:	python%{pyver}dist(httptools)
 BuildRequires:	python%{pyver}dist(python-dotenv)
 BuildRequires:	python%{pyver}dist(pyyaml)
 BuildRequires:	python%{pyver}dist(uvloop)
-BuildRequires:	python%{pyver}dist(watchfiles)
+# httptools and watchfiles are the "standard" extra and are not Python 3.15 yet
 
 %if %{with test}
 BuildRequires:	python%{pyver}dist(coverage)
